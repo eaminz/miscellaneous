@@ -13,3 +13,4 @@ set hlsearch
 set incsearch
 set showmatch
 set undolevels=1000
+filetype indent off
