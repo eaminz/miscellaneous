@@ -1,5 +1,5 @@
 syntax on
-colorscheme default
+colorscheme desert
 set nocompatible
 set nu
 set ruler
