@@ -47,13 +47,14 @@ def getPropertyType(address):
         options.add_argument("headless")
         driver = webdriver.Chrome(chrome_options=options)
         driver.get("https://www.century21.com/")
+        # Mimic human behavior by randomizing movement interval
         driver.implicitly_wait(randint(2, 5))
         driver.find_element_by_id("searchText").clear()
         driver.implicitly_wait(randint(2, 5))
         driver.find_element_by_id("searchText").send_keys(address)
         driver.implicitly_wait(randint(2, 5))
         driver.find_element_by_id("free-text-search-button").click()
-        # Wait needed in headless mode
+        # Wait needed in headless mode to ensure page rendered
         driver.implicitly_wait(8)
         try:
             description = driver.find_element_by_id("propertyDescCollapse").text
