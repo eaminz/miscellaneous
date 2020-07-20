@@ -6,6 +6,7 @@ from getopt import getopt, GetoptError
 from os import path
 from random import randint
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from sys import argv, exit
 
 
@@ -54,11 +55,19 @@ def getPropertyType(address):
         driver.find_element_by_id("free-text-search-button").click()
         # Wait needed in headless mode
         driver.implicitly_wait(8)
-        description = driver.find_element_by_id("propertyDescCollapse").text
-        propertyType = description.split(" - ")[0]
+        try:
+            description = driver.find_element_by_id("propertyDescCollapse").text
+            res = description.split(" - ")[0]
+        # Most errors are caused by obsolete properties which are no longer listed
+        except NoSuchElementException:
+            if (
+                "We do not have any results matching"
+                in driver.find_element_by_id("dropDownNotification").text
+            ):
+                res = "Not Found"
         driver.quit()
-        print "Property type: %s" % propertyType
-        return propertyType
+        print res
+        return res
     except Exception as ex:
         print ex
         return "Error"
