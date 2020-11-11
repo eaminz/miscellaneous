@@ -17,10 +17,10 @@ with urllib.request.urlopen(
         total_votes = time_point["votes"]
         biden_cur_votes = total_votes * time_point["vote_shares"]["bidenj"]
         trump_cur_votes = total_votes * time_point["vote_shares"]["trumpd"]
-        if biden_prev_votes - biden_cur_votes > 0:
+        if biden_prev_votes > biden_cur_votes:
             biden_vote_decrease_total += biden_prev_votes - biden_cur_votes
             biden_vote_decrease_times += 1
-        if trump_prev_votes - trump_cur_votes > 0:
+        if trump_prev_votes > trump_cur_votes:
             trump_vote_decrease_total += trump_prev_votes - trump_cur_votes
             trump_vote_decrease_times += 1
         biden_prev_votes = biden_cur_votes
