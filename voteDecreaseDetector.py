@@ -26,7 +26,7 @@ with urllib.request.urlopen(
         biden_prev_votes = biden_cur_votes
         trump_prev_votes = trump_cur_votes
     print(
-        "biden_vote_decrease_total=%d\nbiden_vote_decrease_total=%d\ntrump_vote_decrease_total=%d\ntrump_vote_decrease_times=%d"
+        "biden_vote_decrease_total=%d\nbiden_vote_decrease_times=%d\ntrump_vote_decrease_total=%d\ntrump_vote_decrease_times=%d"
         % (
             biden_vote_decrease_total,
             biden_vote_decrease_times,
