@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
-import urllib.request, json
+import json
+import urllib.request
 
 with urllib.request.urlopen(
     "https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/race-page/pennsylvania/president.json"
 ) as url:
     raw_data = json.loads(url.read().decode())
     time_series = raw_data["data"]["races"][0]["timeseries"]
+    time_series.sort(key=lambda x: x["timestamp"])
     biden_prev_votes = 0
     trump_prev_votes = 0
     biden_vote_decrease_total = 0
